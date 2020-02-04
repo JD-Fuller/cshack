@@ -1,4 +1,4 @@
-/*Notifies us what we are using - safety check*/
+-- Notifies us what we are using
 USE burgerShack9;
 
 -- DROP TABLE burgers
@@ -8,6 +8,7 @@ USE burgerShack9;
 -- CREATE TABLE burgers (
 --   id int NOT NULL AUTO_INCREMENT , 
 --   name VARCHAR(255) NOT NULL, 
+--   price INT,
 --   description VARCHAR(255),
 --   PRIMARY KEY (id)
 -- );
@@ -17,9 +18,9 @@ USE burgerShack9;
 -- ADD price DECIMAL DEFAULT=10;
 
 -- NOTE Edit
-UPDATE burgers
-SET name = "The Mountain Plus", price = 15.00
-WHERE id = 1;
+-- UPDATE burgers
+-- SET name = "The Mountain Plus", price = 15.00
+-- WHERE id = 1;
 
 
 
@@ -30,11 +31,15 @@ WHERE id = 1;
 
 
 
--- --NOTE GetAll
+-- NOTE GetAll
 -- SELECT * FROM burgers;
 
 -- --NOTE GetById
--- SELECT * FROM burgers, WHERE id = 2;
+SELECT * FROM burgers WHERE id = 2;
+
+-- NOTE DELETE
+-- DELETE FROM burgers WHERE id = 4;
+-- SELECT * FROM burgers;
 
 
 
