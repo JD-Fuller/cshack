@@ -33,9 +33,12 @@ namespace cshack
 
       //Add transient services
       services.AddTransient<BurgersService>();
+      services.AddTransient<BurgersRepository>();
     }
 
-    private IDbConnection CreateDbConnection(){
+    //I'm going to give you this type of database connection to work with other databases
+    private IDbConnection CreateDbConnection()
+    {
       var connectionString = Configuration["db:gearhost"];
       return new MySqlConnection(connectionString);
     }

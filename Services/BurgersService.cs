@@ -7,47 +7,58 @@ namespace cshack.Services
 {
   public class BurgersService
   {
+
+    private readonly BurgersRepository _repo;
+
+    public BurgersService(BurgersRepository br)
+    {
+      _repo = br;
+    }
+
+
+
     public IEnumerable<Burger> Get()
     {
-      return FAKEDB.Burgers;
+      return _repo.Get();
     }
 
-    public Burger GetById(string id)
+    public Burger GetById(int id)
     {
-      Burger found = FAKEDB.Burgers.Find(elem => elem.Id == id);
-      if (found == null)
+      var exists = _repo.GetById(id);
+      if (exists == null)
       {
         throw new Exception("Invalid Id");
       }
-      return found;
+      return exists;
     }
 
-    internal Burger Create(Burger newBurger)
+    internal Burger Create(Burger newData)
     {
-      FAKEDB.Burgers.Add(newBurger);
-      return newBurger;
+      //business rules can go here
+      _repo.Create(newData);
+      return newData;
     }
 
-    internal Burger Edit(Burger burgerUpdate)
+    internal Burger Edit(Burger update)
     {
-      var current = FAKEDB.Burgers.Find(elem => elem.Id == burgerUpdate.Id);
-      if (current == null)
+      var exists = _repo.GetById(update.Id);
+      if (exists == null)
       {
         throw new Exception("Invalid Id");
       }
-      FAKEDB.Burgers.Remove(current);
-      FAKEDB.Burgers.Add(burgerUpdate);
-      return burgerUpdate;
+      _repo.Edit(update);
+      // _repo.Burgers.Add(burgerUpdate);
+      return update;
     }
 
-    internal String Delete(string id)
+    internal String Delete(int id)
     {
-      var current = FAKEDB.Burgers.Find(elem => elem.Id == id);
-      if (current == null)
+      var exists = _repo.GetById(id);
+      if (exists == null)
       {
         throw new Exception("Invalid Id");
       }
-      FAKEDB.Burgers.Remove(current);
+      _repo.Delete(id);
       return "Successfully Deleted";
     }
   }

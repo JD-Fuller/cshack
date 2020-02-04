@@ -31,7 +31,7 @@ namespace cshack.Controllers
     }
 
     [HttpGet("{id}")] //NOTE this route is 'api/burgers/:id'
-    public ActionResult<Burger> Get(string id)
+    public ActionResult<Burger> Get(int id)
     {
       try
       {
@@ -45,11 +45,11 @@ namespace cshack.Controllers
 
 
     [HttpPost]
-    public ActionResult<Burger> Create([FromBody] Burger newBurger) //NOTE "From the body, create a burger called newBurger")
+    public ActionResult<Burger> Create([FromBody] Burger newData) //NOTE "From the body, create a burger called newBurger")
     {
       try
       {
-        return Ok(_bs.Create(newBurger));
+        return Ok(_bs.Create(newData));
       }
       catch (Exception e)
       {
@@ -58,7 +58,7 @@ namespace cshack.Controllers
     }
 
     [HttpPut("{id}")]
-    public ActionResult<Burger> Edit(string id, [FromBody] Burger update)
+    public ActionResult<Burger> Edit([FromBody] Burger update, int id )
     {
       try
       {
@@ -72,7 +72,7 @@ namespace cshack.Controllers
     }
 
     [HttpDelete("{id}")]
-    public ActionResult<String> Delete(string id)
+    public ActionResult<String> Delete(int id)
     {
       try
       {

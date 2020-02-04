@@ -5,25 +5,17 @@ namespace cshack.Models
 {
   public class Burger
   {
-    public string Id { get; set; }
-    [Required]
-    [MinLength(2)]
-    [MaxLength(100)]
     public string Name { get; set; }
-    [Range(0, 1000)]
+    public string Description { get; set; }
     public int Price { get; set; }
+    public int Id { get; set; }
 
 
-    public Burger()
+    public Burger(string name, string description, int price)
     {
-      Id = Guid.NewGuid().ToString();
-    }
-    public Burger(string name, int price)
-    {
-
       Name = name;
       Price = price;
-      Id = Guid.NewGuid().ToString(); //NOTE makes Globaly Unique ID
+      Description = description;
     }
   }
 }
