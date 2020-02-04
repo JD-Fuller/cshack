@@ -28,8 +28,16 @@ namespace cshack
     {
       services.AddControllers();
 
+      //THis creates connection to DB for dependency injection - ties into dapper
+      services.addScoped<IDbConnection>(x=> CreateDBConnection());
+
       //Add transient services
       services.AddTransient<BurgersService>();
+    }
+
+    private IDbConnection CreateDbConnection(){
+      var connectionString = Configuration["db:gearhost"];
+      return new MySqlConnection(connectionString);
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
